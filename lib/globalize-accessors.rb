@@ -20,12 +20,12 @@ module Globalize::Accessors
     "#{attr_name}_#{locale.to_s.underscore}"
   end
 
-  def human_attribute_name(attr_name)
-    if has_globalized_attributes? and is_attr_name_localized?(attr_name)
-      components = globalize_attribute_names_components[attr_name.to_sym]
-      super(components.first) + " [#{components.last}]"
+  def human_attribute_name(attribute, options = {})
+    if has_globalized_attributes? and is_attr_name_localized?(attribute)
+      components = globalize_attribute_names_components[attribute.to_sym]
+      super(components.first, options) + " [#{components.last}]"
     else
-      super(attr_name)
+      super(attribute, options)
     end
   end
 
